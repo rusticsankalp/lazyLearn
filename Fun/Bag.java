@@ -1,3 +1,8 @@
+//Notes 
+//1. need the import declaration for Iterator
+//2. the Listeirator does not need to specify tempalte type <item>
+//3. capitalization errors
+
 import java.util.Iterator;
 public class Bag<Item> implements Iterable<Item>
 {
