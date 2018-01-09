@@ -1,9 +1,38 @@
-public class Bag<Item>
+import java.util.Iterator;
+public class Bag<Item> implements Iterable<Item>
 {
-  public void add(Item item) { }
+  private class Node
+  {
+    Item item;
+    Node next;
+  }
   
-  public Iterable
-    <Item> iterator() { Iterable<Item> list = null; return list;}
-  
-  
+  private Node first;
+    
+  public void add(Item item) 
+  { 
+    Node old = first;
+    first = new Node();
+    first.item = item;
+    first.next = old;
+  }  
+  private class ListIterator implements Iterator<Item>
+  {
+    private Node current = first;
+    public boolean hasNext()
+    {
+      return current != null;
+    }
+    public void remove(){}
+    public Item next()
+    {
+      Item item = current.item;
+      current = current.next;  
+      return item;
+    }
+  }
+     public Iterator<Item> iterator()
+   {
+     return new ListIterator();
+   }
 }
