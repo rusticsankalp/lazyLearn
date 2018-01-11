@@ -1,0 +1,46 @@
+repositories {
+	mavenCentral()
+}
+
+apply plugin: "java"
+
+configurations {
+	myConfig
+}
+
+dependencies {
+	compile "org.apache.commons:commons-lang3:3.3.2"
+	myConfig  "org.apache.commons:commons-lang3:3.3.2"
+}
+
+sourceSets {
+	main.java.srcDir "src/main"
+	test.java.srcDir "src/test"
+}
+
+jar {
+    from configurations.myConfig.collect { zipTree it} 
+	manifest.attributes "Main-Class" : "net.sankalpg.gradleTutorial12.Main"
+}
+
+task hello{
+	group 'greeting'
+	description 'Greets you'
+	
+	//configurations
+	println 'Hello from configuration'
+	
+	doLast { println 'Bye'}
+	doFirst { println 'Hello'}
+}
+
+task run(type: JavaExec, dependsOn:classes){
+	main 'net.sankalpg.gradleTutorial12.Main'
+	classpath sourceSets.main.runtimeClasspath
+	args 'Hello World'
+}
+
+task runJar(type:Exec,dependsOn:jar) {
+	executable 'java'
+	args '-jar' , "$jar.archivePath", 'Hello World'
+}
