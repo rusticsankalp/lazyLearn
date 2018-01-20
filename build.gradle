@@ -42,8 +42,8 @@ junitPlatform {
 		}
 		tags {
 			// include 'fast'
-			exclude 'fast'
-			exclude 'slow'
+			//exclude 'fast'
+			//exclude 'slow'
 		}
 		// includeClassNamePattern '.*Test'
 	}

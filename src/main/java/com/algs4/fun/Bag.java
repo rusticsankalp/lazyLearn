@@ -3,6 +3,8 @@
 //2. the Listeirator does not need to specify tempalte type <item>
 //3. capitalization errors
 
+package com.algs4.fun;
+
 import java.util.Iterator;
 public class Bag<Item> implements Iterable<Item>
 {
